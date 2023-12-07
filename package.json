@@ -14,15 +14,20 @@
   "dependencies": {
     "@babel/parser": "^7.20.15",
     "@babel/traverse": "^7.20.13",
+    "@radix-ui/react-slot": "^1.0.2",
     "@tailwindcss/typography": "^0.5.7",
     "autoprefixer": "^10.4.13",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^1.2.1",
+    "lucide": "^0.294.0",
+    "lucide-react": "^0.294.0",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "react-json-view": "^1.21.3",
-    "tailwind-merge": "^1.8.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7",
     "tailwindcss-safe-area": "^0.2.2"
   },
   "devDependencies": {
