@@ -15,6 +15,29 @@ module.exports = {
 			'2xl': '1536px',
 		},
 		extend: {
+			colors: {
+				primary: {
+					DEFAULT: 'hsl(var(--primary-base))',
+					dark: 'hsl(var(--primary-dark))',
+					light: 'hsl(var(--primary-light))',
+					lighter: 'hsl(var(--primary-lighter))',
+					foreground: 'hsl(var(--primary-foreground))',
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary-base))',
+					dark: 'hsl(var(--secondary-dark))',
+					light: 'hsl(var(--secondary-light))',
+					lighter: 'hsl(var(--secondary-lighter))',
+					foreground: 'hsl(var(--secondary-foreground))',
+				},
+				danger: {
+					DEFAULT: 'hsl(var(--danger-base))',
+					dark: 'hsl(var(--danger-dark))',
+					light: 'hsl(var(--danger-light))',
+					lighter: 'hsl(var(--danger-lighter))',
+					foreground: 'hsl(var(--danger-foreground))',
+				},
+			},
 			fontFamily: {
 				Benne: ['Benne'],
 				Besley: ['Besley'],
@@ -35,7 +58,13 @@ module.exports = {
 				LexendTera: ['Lexend Tera'],
 				Lato: ['Lato'],
 			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)',
+			},
 		},
 	},
+
 	plugins: [],
 };

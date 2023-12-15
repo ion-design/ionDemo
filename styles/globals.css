@@ -29,3 +29,22 @@ a {
 		background: white;
 	}
 }
+
+:root {
+	--primary-darker: 145 54% 24%;
+	--primary-dark: 144 61% 29%;
+	--primary-base: 144 59% 45%;
+	--primary-light: 144 65% 74%;
+	--primary-lighter: 143 66% 85%;
+	--secondary-darker: 39 29% 28%;
+	--secondary-dark: 42 33% 33%;
+	--secondary-base: 52 34% 47%;
+	--secondary-light: 56 35% 64%;
+	--secondary-lighter: 60 36% 77%;
+	--danger-darker: 359 70% 35%;
+	--danger-dark: 359 74% 42%;
+	--danger-base: 359 84% 60%;
+	--danger-light: 359 94% 82%;
+	--danger-lighter: 359 96% 89%;
+	--radius: 12px;
+}

@@ -1,78 +1,46 @@
-import { ComponentProps, useMemo } from 'react';
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+import clsx from 'clsx';
 
-type ButtonProps = ComponentProps<'button'> & {
-	color?: 'primary' | 'secondary' | 'tertiary' | 'outline';
-	size?: 'sm' | 'md' | 'lg' | 'full';
-	icon?: 'left' | 'right' | 'none';
-	children: React.ReactNode;
-};
+const buttonVariants = cva(
+	'inline-flex disabled:cursor-not-allowed active:scale-[0.99] items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50',
+	{
+		variants: {
+			variant: {
+				default: 'bg-primary text-primary-lighter shadow hover:bg-primary-light active:bg-primary-dark',
+				destructive: 'bg-danger text-danger-lighter shadow-sm hover:bg-danger-light',
+			},
+			size: {
+				default: 'h-8 px-4 py-2',
+				sm: 'h-7 rounded-md px-3 text-xs',
+				lg: 'h-10 rounded-md px-8',
+				icon: 'h-8 w-8',
+			},
+		},
+		defaultVariants: {
+			variant: 'default',
+			size: 'default',
+		},
+	}
+);
 
-function Button({
-	color = 'primary',
-	size = 'sm',
-	icon = 'none',
-	children,
-	...buttonProps
-}: ButtonProps) {
-	const colorClasses = useMemo(() => {
-		switch (color) {
-			case 'primary':
-				return 'bg-[#14F195] text-black ';
-			case 'secondary':
-				return 'bg-[#14AFF1] text-black ';
-			case 'tertiary':
-				return 'bg-[#141624] text-white ';
-			case 'outline':
-				return 'border-[#14F195] border-2 text-[#14F195] ';
-			default:
-				return 'bg-[#14F195] text-black ';
-		}
-	}, [color]);
-
-	const sizeClasses = useMemo(() => {
-		switch (size) {
-			case 'sm':
-				return 'px-10 w-fit ';
-			case 'md':
-				return 'px-16 w-fit ';
-			case 'lg':
-				return 'px-24 w-fit ';
-			case 'full':
-				return 'w-full ';
-			default:
-				return 'px-10 ';
-		}
-	}, [size]);
-
-	const iconSource = useMemo(() => {
-		switch (color) {
-			case 'primary':
-				return '/icon_black.svg';
-			case 'secondary':
-				return '/icon_black.svg';
-			case 'tertiary':
-				return '/icon_white.svg';
-			case 'outline':
-				return '/icon_green.svg';
-			default:
-				return '/icon_black.svg';
-		}
-	}, [color]);
-
-	return (
-		<button
-			className={
-				'flex items-center justify-center gap-2 rounded-[10px] py-2 font-semibold ' +
-				colorClasses +
-				sizeClasses
-			}
-			{...buttonProps}
-		>
-			{icon === 'left' && <img src={iconSource} className="h-4" alt="icon" />}
-			{children}
-			{icon === 'right' && <img src={iconSource} className="h-4" alt="icon" />}
-		</button>
-	);
+export interface ButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+		VariantProps<typeof buttonVariants> {
+	asChild?: boolean;
 }
 
-export default Button;
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, variant, size, asChild = false, children, ...props }, ref) => {
+		const Comp = asChild ? Slot : 'button';
+		return (
+			<Comp className={clsx(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+				{children}
+			</Comp>
+		);
+	}
+);
+Button.displayName = 'Button';
+
+export { Button, buttonVariants };
